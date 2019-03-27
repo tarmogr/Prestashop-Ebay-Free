@@ -903,7 +903,7 @@ class EbaySynchronizer
 
     private static function __fillDescription($description, $medium_pictures, $large_pictures, $product_price = '', $product_price_discount = '')
     {
-        return str_replace(
+        $text = str_replace(
             array('{MAIN_IMAGE}', '{MEDIUM_IMAGE_1}', '{MEDIUM_IMAGE_2}', '{MEDIUM_IMAGE_3}', '{PRODUCT_PRICE}', '{PRODUCT_PRICE_DISCOUNT}'),
             array(
                 (isset($large_pictures[0]) ? '<img src="'.Tools::safeOutput($large_pictures[0]).'" class="bodyMainImageProductPrestashop" />' : ''),
@@ -915,6 +915,8 @@ class EbaySynchronizer
             ),
             $description
         );
+        
+        return str_replace('http://', 'https://', $text);
     }
 
     private static function __insertEbayProduct($id_product, $id_ebay_profile, $ebay_item_id, $date, $id_attribute = 0)
@@ -1483,7 +1485,7 @@ class EbaySynchronizer
 
     public static function fillAllTemplate($data, $description)
     {
-        return str_replace(
+        $text =  str_replace(
             array(
                 '{MAIN_IMAGE}',
                 '{MEDIUM_IMAGE_1}',
@@ -1516,6 +1518,8 @@ class EbaySynchronizer
             ),
             $description
         );
+        
+        return str_replace('http://', 'https://', $text);
     }
 
     /**
