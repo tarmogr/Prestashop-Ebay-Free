@@ -927,7 +927,7 @@ class EbayOrder
                 if (!$product_has_find && false) {
                     //Not possible with ebay multivariation products to retrieve the correct product
                     if (!isset($transaction->Variation->SKU)) {
-                        if ($p = EbayProduct::getProductsIdFromItemId($transaction->Item->ID)) {
+                        if ($p = EbayProduct::getProductsIdFromItemId($transaction->Item->ID ?? $transaction->Item->ItemId)) {
                             $products[] = array(
                                 'id_product'           => $p['id_product'],
                                 'id_product_attribute' => $p['id_product_attribute'],
